@@ -1,0 +1,35 @@
+#**************************数据库相关配置**************************
+#数据源的具体配置，设置了base、map、simu、entry四个数据库，对应使用哪几个库在具体mtex-项目中的
+#custom.datasource.names里配置，下面的具体配置可以拷贝到具体项目中，在该项目会覆盖此默认配置
+
+custom:
+  datasource:
+    basecon:
+      driver-class-name: com.mysql.jdbc.Driver
+      url: ESrMfvbfqjJJg1+rqVLjWbwOGmoD1XrbWGKyqdB1hcY4TtGeVQQpxDd7jmgL20FnLJ4EcooOCzmWLNBuivrivpA8SIzSVStxfivIUbV5k3dCB+i78dWobsAaEzYsuUC6TvtfhYKHQr7bgxtoDrsZlQ==
+      username: hKIVaqBPyrk=
+      password: hKIVaqBPyrk=
+#<!-- 数据源开启的初始化连接数量 -->
+spring:
+  datasource:
+    initial-size: 1
+  #<!-- 数据源开启的最大的连接数量 -->
+    max-active: 30
+  #<!-- 配置获取连接等待超时的时间，单位毫秒 -->
+    max-wait: 100000
+  #<!-- 当闲置连接数量超过该值, PoolSweeper 会关闭可关闭的连接, 但不会让闲置连接数量低于该值 -->
+    min-idle: 1
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+      #配置监控统计拦截的filters，stat:监控统计、log4j：日志记录、wall：防御sql注入
+      #如果允许时报错  java.lang.ClassNotFoundException: org.apache.log4j.Priority
+      #则导入 log4j 依赖即可，Maven 地址： https://mvnrepository.com/artifact/log4j/log4j
+    filters: stat,wall,log4j
+    maxPoolPreparedStatementPerConnectionSize: 20
+    useGlobalDataSourceStat: true
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
